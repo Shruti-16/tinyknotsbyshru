@@ -11,7 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         info = @Info(
                 title = "User Service API",
                 version = "1.0",
-                description = "API for managing users and their profiles",
+                description = "This Service allows you to perform CRUD operations on user data, " +
+                        "including creating, retrieving, updating, and deleting user information including user profiles and user addresses.",
                 contact = @Contact(
                         name = "Shruti Chintawar",
                         email = "tinyknotsbyshru@gmail.com"

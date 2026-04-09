@@ -1,9 +1,7 @@
 package com.tinyknotsbyshru.UserService.mapper;
 
 import com.tinyknotsbyshru.UserService.dto.ProfileDto;
-import com.tinyknotsbyshru.UserService.dto.UserDto;
 import com.tinyknotsbyshru.UserService.entities.Profile;
-import com.tinyknotsbyshru.UserService.entities.User;
 
 public class ProfileMapper {
     public static ProfileDto mapToProfileDto(Profile profile, ProfileDto profileDto) {

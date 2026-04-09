@@ -1,12 +1,11 @@
 package com.tinyknotsbyshru.UserService.service.impl;
 
 import com.tinyknotsbyshru.UserService.dto.ProfileDto;
-import com.tinyknotsbyshru.UserService.dto.ResponseDto;
 import com.tinyknotsbyshru.UserService.dto.UserDto;
 import com.tinyknotsbyshru.UserService.entities.Profile;
 import com.tinyknotsbyshru.UserService.entities.User;
 import com.tinyknotsbyshru.UserService.exception.ResourceNotFoundException;
-import com.tinyknotsbyshru.UserService.exception.UserAlreadyExistsException;
+import com.tinyknotsbyshru.UserService.exception.ResourceAlreadyExistsException;
 import com.tinyknotsbyshru.UserService.mapper.ProfileMapper;
 import com.tinyknotsbyshru.UserService.mapper.UserMapper;
 import com.tinyknotsbyshru.UserService.repositories.AddressRepository;
@@ -39,7 +38,7 @@ public class UserServiceImpl implements IUserService {
         User user = UserMapper.mapToUser(userDto, new User());
         Optional<User> existingUser = userRepository.findByEmail(userDto.getEmail());
         if(existingUser.isPresent()){
-            throw new UserAlreadyExistsException("User with email " + userDto.getEmail() + " already exists");
+            throw new ResourceAlreadyExistsException("User with email " + userDto.getEmail() + " already exists");
         }
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());

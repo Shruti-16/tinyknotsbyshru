@@ -2,7 +2,6 @@ package com.tinyknotsbyshru.UserService.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -14,18 +13,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Address {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "user_id")
-    private int userId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
     @Column(name = "address_line1")
     private String addressLine1;
     @Column(name = "address_line2")
     private String addressLine2;
     private String city;
     private String state;
+    @Column(name = "pin_code")
     private String pinCode;
     private String country;
     @Column(name = "is_default")

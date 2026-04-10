@@ -9,7 +9,9 @@ import com.tinyknotsbyshru.UserService.mapper.AddressMapper;
 import com.tinyknotsbyshru.UserService.repositories.AddressRepository;
 import com.tinyknotsbyshru.UserService.repositories.UserRepository;
 import com.tinyknotsbyshru.UserService.service.IAddressService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -59,6 +61,8 @@ public class AddressServiceImpl implements IAddressService {
     }
 
     @Override
+    @Transactional
+    @Modifying
     public boolean deleteAddress(Integer addressId){
         Address existingAddress = addressRepository.findById(addressId).orElseThrow(() -> new ResourceNotFoundException("Address", "Id", addressId.toString()));
         if(existingAddress.getIsDefault()){
